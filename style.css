@@ -1,0 +1,113 @@
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+body {
+  text-align: center;
+  margin: 200px auto;
+  overflow: hidden;
+}
+
+.intro {
+  font-size: 20px;
+  position: absolute;
+  left: 100px;
+  top: 140px;
+  color: white;
+  background-color: sandybrown;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 500px;
+  background: url(img/background.png) center/cover;
+  margin: auto;
+}
+
+.game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.game-btn {
+  width: 60px;
+  height: 60px;
+  background-color: wheat;
+  border: 4px solid black;
+  font-size: 24px;
+  transition: transform 100ms ease-in;
+}
+.game-btn:hover {
+  transform: scale(1.1);
+}
+
+.game-timer {
+  width: 100px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  font-size: 24px;
+  margin-top: 8px;
+  border-radius: 5%;
+  visibility: hidden;
+}
+
+.game-score {
+  width: 50px;
+  height: 50px;
+  font-size: 46px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: darksalmon;
+  margin-top: 8px;
+  border: 3px solid black;
+  visibility: hidden;
+}
+
+.game-field {
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+  position: relative;
+}
+
+.pop-up {
+  width: 400px;
+  height: 140px;
+  padding: 20px;
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  margin: auto;
+  transform: translateY(-150%);
+  background-color: #00000090;
+}
+
+.pop-up-redo {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background-color: wheat;
+  border: 2px solid black;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.pop-up-hide {
+  display: none;
+}
+
+.pop-up-message {
+  display: block;
+  font-size: 38px;
+}
