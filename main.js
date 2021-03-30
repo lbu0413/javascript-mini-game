@@ -16,7 +16,7 @@ const bgSound = new Audio('./sound/bg.mp3')
 const gameWin = new Audio('./sound/game_win.mp3')
 
 const carrot_count = 20;
-const bug_count = 5;
+const bug_count = 10;
 const carrot_size = 80;
 const game_duration_sec = 20;
 
