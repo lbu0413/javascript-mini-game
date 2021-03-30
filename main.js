@@ -9,6 +9,11 @@ const popUp = document.querySelector('.pop-up');
 const popUpRedo = document.querySelector('.pop-up-redo');
 const popUpMessage = document.querySelector('.pop-up-message');
 
+const carrotSound = new Audio('./sound/carrot_pull.mp3')
+const bugSound = new Audio('./sound/bug_pull.mp3')
+
+const bgSound = new Audio('./sound/bg.mp3')
+const gameWin = new Audio('./sound/game_win.mp3')
 
 const carrot_count = 20;
 const bug_count = 5;
@@ -21,6 +26,7 @@ let score = 0;
 
 
 function init() {
+    score = 0;
     field.innerHTML = '';
     gameScore.innerText = carrot_count;
     addItem('carrot', carrot_count, 'img/carrot.png')
@@ -60,7 +66,6 @@ gameBtn.addEventListener('click', () => {
     else{
         startGame();
     }
-    started = !started;
     
 });
 
@@ -73,17 +78,20 @@ field.addEventListener('click', onFieldClick)
 
 
 function startGame() {
+    started = true;
     init();
+    playSound(bgSound)
     showTimerAndScore();
     showStopButton();
     startGameTimer();
 }
 
 function stopGame() {
+    started = false;
     stopGameTimer();
     hideGameButton();
     showPopUpWithText('Try Again?');
-
+    stopSound(bgSound)
 }
 
 
@@ -91,6 +99,7 @@ function showStopButton() {
     const icon = gameBtn.querySelector('.fas');
     icon.classList.add('fa-stop')
     icon.classList.remove('fa-play')
+    gameBtn.style.visibility = 'visible'
 }
 
 function hideGameButton() {
@@ -139,6 +148,7 @@ function onFieldClick(event) {
     if(target.matches('.carrot')){
         score++;
         target.remove();
+        playSound(carrotSound);
         updateScoreBoard();
         if(score === carrot_count) {
             stopGameTimer();
@@ -146,6 +156,7 @@ function onFieldClick(event) {
         }
     }
     else if(target.matches('.bug')){
+        playSound(bugSound)
         stopGameTimer();
         finishGame(false);
     }
@@ -156,10 +167,27 @@ function updateScoreBoard() {
 }
 
 function finishGame(win) {
+    started = false;
     hideGameButton();
+    if(win) {
+        playSound(gameWin)
+    }
+    else {
+        playSound(bugSound)
+    }
+    stopGameTimer();
+    stopSound(bgSound);
     showPopUpWithText(win ? 'YOU WON!!' : 'YOU LOST..');
 }
 
 function hidePopUp() {
     popUp.classList.add('pop-up-hide');
+}
+
+function playSound(sound) {
+    sound.play();
+}
+
+function stopSound(sound) {
+    sound.pause();
 }
